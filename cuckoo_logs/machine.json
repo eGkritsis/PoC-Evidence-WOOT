@@ -1,0 +1,29 @@
+{
+  "name": "win10_1",
+  "label": "/home/cuckoo/.vmcloak/vms/qemu/win10_1/disk.qcow2",
+  "ip": "192.168.30.12",
+  "platform": "windows",
+  "os_version": "10",
+  "tags": [
+    "pdfreader",
+    "vcredist",
+    "browser_edge",
+    "adobepdf",
+    "dotnet",
+    "browser_internet_explorer"
+  ],
+  "snapshot": "/home/cuckoo/.vmcloak/vms/qemu/win10_1/memory.snapshot",
+  "architecture": "amd64",
+  "interface": "br0",
+  "agent_port": 8000,
+  "mac_address": "",
+  "machinery_name": "qemu",
+  "state": "poweroff",
+  "locked": true,
+  "locked_by": "20251203-10QZ9C_1",
+  "reserved": false,
+  "reserved_by": "",
+  "disabled": false,
+  "disabled_reason": "",
+  "errors": []
+}

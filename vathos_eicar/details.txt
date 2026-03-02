@@ -1,0 +1,18 @@
+# Vathos Build Instructions
+
+
+1. Change the hardcoded values with the desired number of rounds and key length in encrypt_url.py
+
+2. Run python3 encrypt_url.py to generate the header files. 
+
+2. Compile the payload
+
+Use the MinGW-w64 Clang cross-compiler:
+
+x86_64-w64-mingw32-clang --target=x86_64-w64-windows-gnu -O2 -Wno-deprecated-declarations onion.c -o vathos_eicar.exe -Wl,-subsystem,windows
+
+3. Run the demo
+
+Execute the demo client with:
+
+vathos_eicar.exe 

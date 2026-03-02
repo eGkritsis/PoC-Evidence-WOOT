@@ -1,0 +1,13 @@
+2025-12-03 02:39:54 INFO  [cuckoo.processing.worker]: Starting work. worker=identification0 worktype=identification analysis_id=20251203-10QZ9C
+2025-12-03 02:39:54 DEBUG [cuckoo.processing.worker]: Running processing plugin. plugin=Identify stage=identification analysis_id=20251203-10QZ9C
+2025-12-03 02:39:54 DEBUG [cuckoo.processing.worker]: Running processing plugin. plugin=FileSafelist stage=identification analysis_id=20251203-10QZ9C
+2025-12-03 02:39:54 DEBUG [cuckoo.processing.worker]: Running processing plugin. plugin=SelectFile stage=identification analysis_id=20251203-10QZ9C
+2025-12-03 02:39:54 DEBUG [cuckoo.processing.worker]: Running reporting plugin. plugin=JSONDump stage=identification analysis_id=20251203-10QZ9C
+2025-12-03 02:40:00 INFO  [cuckoo.processing.worker]: Starting work. worker=pre0 worktype=pre analysis_id=20251203-10QZ9C
+2025-12-03 02:40:00 DEBUG [cuckoo.processing.worker]: Running processing plugin. plugin=DetermineTarget stage=pre analysis_id=20251203-10QZ9C
+2025-12-03 02:40:00 DEBUG [cuckoo.processing.worker]: Running processing plugin. plugin=CreateZip stage=pre analysis_id=20251203-10QZ9C
+2025-12-03 02:40:00 DEBUG [cuckoo.processing.worker]: Running processing plugin. plugin=DetermineLaunchArgs stage=pre analysis_id=20251203-10QZ9C
+2025-12-03 02:40:00 DEBUG [cuckoo.processing.worker]: Running processing plugin. plugin=FileInfoGather stage=pre analysis_id=20251203-10QZ9C
+2025-12-03 02:40:00 DEBUG [cuckoo.processing.worker]: Running processing plugin. plugin=StaticYaraRules stage=pre analysis_id=20251203-10QZ9C
+2025-12-03 02:40:00 DEBUG [cuckoo.processing.worker]: Running reporting plugin. plugin=JSONDump stage=pre analysis_id=20251203-10QZ9C
+2025-12-03 02:40:00 DEBUG [cuckoo.control]: Creating tasks for analysis. analysis_id=20251203-10QZ9C

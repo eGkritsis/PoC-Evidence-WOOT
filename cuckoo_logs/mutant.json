@@ -1,0 +1,9 @@
+{"ts":2687,"kind":"mutant","effect":"mutant_opened","action":"open","status":3221225524,"pid":4836,"procid":79,"path":"Local\\ShimViewer"}
+{"ts":13516,"kind":"mutant","effect":"mutant_created","action":"create","status":0,"pid":6048,"procid":221,"path":"Local\\SM0:6048:232:WilStaging_01"}
+{"ts":13516,"kind":"mutant","effect":"mutant_created","action":"create","status":1073741824,"pid":6048,"procid":221,"path":"Local\\SM0:6048:232:WilStaging_01"}
+{"ts":13516,"kind":"mutant","effect":"mutant_created","action":"create","status":1073741824,"pid":6048,"procid":221,"path":"Local\\SM0:6048:232:WilStaging_01"}
+{"ts":65937,"kind":"mutant","effect":"mutant_created","action":"create","status":0,"pid":18196,"procid":1559,"path":"Global\\Instance0:  ESENT Performance Data Schema Version 276"}
+{"ts":66172,"kind":"mutant","effect":"mutant_created","action":"create","status":1073741824,"pid":18196,"procid":1559,"path":"Global\\{5E5C36C0-5E7C-471f-84D7-110FDC1AFD0D}"}
+{"ts":66562,"kind":"mutant","effect":"mutant_created","action":"create","status":0,"pid":18624,"procid":1618,"path":"Local\\SM0:18624:120:WilError_01"}
+{"ts":66672,"kind":"mutant","effect":"mutant_created","action":"create","status":0,"pid":18624,"procid":1618,"path":"Local\\Identity CRL v2 File Access"}
+{"ts":66687,"kind":"mutant","effect":"mutant_created","action":"create","status":0,"pid":18624,"procid":1618,"path":"Local\\Identity CRL v2 File Access"}

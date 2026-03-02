@@ -1,0 +1,38 @@
+2025-12-03 02:40:00 DEBUG [cuckoo.node.node]: Asking taskrunner to start task. task_id=20251203-10QZ9C_1 machine=win10_1 resultserver=192.168.30.1:2042
+2025-12-03 02:40:00 INFO  [cuckoo.control]: Setting task to state running. task_id=20251203-10QZ9C_1
+2025-12-03 02:40:00 INFO  [cuckoo.node.taskrunner]: Task starting. task_id=20251203-10QZ9C_1 machine=win10_1 target='recursive_spawn.exe'
+2025-12-03 02:40:00 DEBUG [cuckoo.node.taskrunner]: Asking resultserver to map for IP to task. ip=192.168.30.12 task_id=20251203-10QZ9C_1
+2025-12-03 02:40:00 DEBUG [cuckoo.node.taskrunner]: Initializing taskflow. taskflowkind=standard task_id=20251203-10QZ9C_1
+2025-12-03 02:40:00 DEBUG [cuckoo.node.taskrunner]: Requesting machine start. machine=win10_1 task_id=20251203-10QZ9C_1
+2025-12-03 02:40:09 DEBUG [cuckoo.node.taskrunner]: Waiting until agent is online. agent_address=192.168.30.12:8000 task_id=20251203-10QZ9C_1
+2025-12-03 02:40:09 DEBUG [cuckoo.node.taskrunner]: Agent online. task_id=20251203-10QZ9C_1
+2025-12-03 02:40:09 DEBUG [cuckoo.node.taskrunner]: Using stager. stager=tmstage task_id=20251203-10QZ9C_1
+2025-12-03 02:40:09 DEBUG [cuckoo.node.taskrunner]: Preparing stager. task_id=20251203-10QZ9C_1
+2025-12-03 02:40:09 DEBUG [cuckoo.node.taskrunner]: Delivering and executing payload. task_id=20251203-10QZ9C_1
+2025-12-03 02:40:19 DEBUG [cuckoo.node.resultserver]: New file upload starting. newfile='logs/threemon.pb' task_id=20251203-10QZ9C_1
+2025-12-03 02:40:19 DEBUG [cuckoo.node.resultserver]: New screenshot upload. newfile=18803.jpg task_id=20251203-10QZ9C_1
+2025-12-03 02:40:19 DEBUG [cuckoo.node.resultserver]: Screenshot upload ended. newfile=18803.jpg size=25.8KiB task_id=20251203-10QZ9C_1
+2025-12-03 02:40:19 DEBUG [cuckoo.node.taskrunner]: Running until timeout. timeout=120 task_id=20251203-10QZ9C_1
+2025-12-03 02:40:32 DEBUG [cuckoo.node.resultserver]: New screenshot upload. newfile=31379.jpg task_id=20251203-10QZ9C_1
+2025-12-03 02:40:32 DEBUG [cuckoo.node.resultserver]: Screenshot upload ended. newfile=31379.jpg size=25.7KiB task_id=20251203-10QZ9C_1
+2025-12-03 02:41:04 DEBUG [cuckoo.node.resultserver]: New screenshot upload. newfile=63713.jpg task_id=20251203-10QZ9C_1
+2025-12-03 02:41:04 DEBUG [cuckoo.node.resultserver]: Screenshot upload ended. newfile=63713.jpg size=25.7KiB task_id=20251203-10QZ9C_1
+2025-12-03 02:42:04 DEBUG [cuckoo.node.resultserver]: New screenshot upload. newfile=123789.jpg task_id=20251203-10QZ9C_1
+2025-12-03 02:42:04 DEBUG [cuckoo.node.resultserver]: Screenshot upload ended. newfile=123789.jpg size=25.7KiB task_id=20251203-10QZ9C_1
+2025-12-03 02:42:19 DEBUG [cuckoo.node.taskrunner]: Task run timeout reached. timeout=120 task_id=20251203-10QZ9C_1
+2025-12-03 02:42:19 DEBUG [cuckoo.node.taskrunner]: Requesting machine stop. machine=win10_1 task_id=20251203-10QZ9C_1
+2025-12-03 02:42:21 DEBUG [cuckoo.node.taskrunner]: Asking resultserver to unmap IP-task. ip=192.168.30.12 task_id=20251203-10QZ9C_1
+2025-12-03 02:42:21 DEBUG [cuckoo.node.taskrunner]: Sending task done state to state controller. task_id=20251203-10QZ9C_1
+2025-12-03 02:42:21 INFO  [cuckoo.node.taskrunner]: Task completed. task_id=20251203-10QZ9C_1
+2025-12-03 02:42:21 DEBUG [cuckoo.node.resultserver]: File upload ended. newfile='logs/threemon.pb' size=11.6MiB task_id=20251203-10QZ9C_1
+2025-12-03 02:42:21 DEBUG [cuckoo.control]: Queueing task for post analysis processing. task_id=20251203-10QZ9C_1
+2025-12-03 02:42:22 INFO  [cuckoo.processing.worker]: Starting work. worker=post0 worktype=post task_id=20251203-10QZ9C_1
+2025-12-03 02:42:22 DEBUG [cuckoo.processing.worker]: Using event consumers. event_consumers=[<cuckoo.processing.post.eventconsumer.eventlogs.EventJSONFiles object at 0x722598afca00>, <cuckoo.processing.post.eventconsumer.patternsigs.PatternFinder object at 0x722598afca60>, <cuckoo.processing.post.eventconsumer.injection.ProcessInjection object at 0x722598afcb20>, <cuckoo.processing.post.eventconsumer.suspicious.SuspiciousEventScoring object at 0x722598afcb80>] task_id=20251203-10QZ9C_1
+2025-12-03 02:42:22 DEBUG [cuckoo.processing.worker]: Chose translator for logfile. logfile=threemon.pb translator_class=<class 'cuckoo.processing.event.translate.threemon.reader.ThreemonReader'> task_id=20251203-10QZ9C_1
+2025-12-03 02:42:26 DEBUG [cuckoo.processing.worker]: Running processing plugin. plugin=Pcapreader stage=post task_id=20251203-10QZ9C_1
+2025-12-03 02:42:26 DEBUG [cuckoo.processing.worker]: Running processing plugin. plugin=NetworkPatternSignatures stage=post task_id=20251203-10QZ9C_1
+2025-12-03 02:42:26 DEBUG [cuckoo.processing.worker]: Running processing plugin. plugin=ProcMemCfgExtract stage=post task_id=20251203-10QZ9C_1
+2025-12-03 02:42:26 DEBUG [cuckoo.processing.worker]: Running processing plugin. plugin=ScreenshotTiming stage=post task_id=20251203-10QZ9C_1
+2025-12-03 02:42:26 DEBUG [cuckoo.processing.worker]: Running reporting plugin. plugin=JSONDump stage=post task_id=20251203-10QZ9C_1
+2025-12-03 02:42:26 DEBUG [cuckoo.processing.worker]: Running reporting plugin. plugin=TLSMasterSecrets stage=post task_id=20251203-10QZ9C_1
+2025-12-03 02:42:26 INFO  [cuckoo.control]: Setting task to reported. task_id=20251203-10QZ9C_1

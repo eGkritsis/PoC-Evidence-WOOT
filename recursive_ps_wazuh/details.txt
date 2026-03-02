@@ -1,0 +1,3 @@
+C2 IP and Port are given as parameters in the command line.
+No static analysis evasion to this date.
+Custom variation of recursive_spawn with PS capabilities and added features like cmd.exe and registry flooding for Wazuh Exploitation and evasion.
