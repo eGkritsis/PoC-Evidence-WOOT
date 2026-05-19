@@ -63,18 +63,19 @@ All executable demonstrations should only be evaluated inside:
 - offline sandbox infrastructure,
 - or intentionally segmented research networks.
 
-### Step 1 — Static Inspection Only (SAFE)
 
-The following directories are safe to inspect without executing any code:
+| Artifact Component        | Purpose                            | Execution Required | Safety Level      |
+| ------------------------- | ---------------------------------- | ------------------ | ----------------- |
+| `cape_logs/`              | CAPE execution evidence            | No                 | Safe (read-only)  |
+| `cuckoo_logs/`            | Cuckoo execution evidence          | No                 | Safe (read-only)  |
+| `har_files/`              | Online sandbox traces              | No                 | Safe (read-only)  |
+| `recursive_spawn/`        | Process recursion PoC              | Yes (optional)     | VM-only           |
+| `recursive_ps_wazuh/`     | Wazuh telemetry exhaustion + shell | Yes                | High-risk VM-only |
+| `recursive_velociraptor/` | Velociraptor pstree failure PoC    | Yes                | VM-only           |
+| `vathos_demo/`            | Base payload generation demo       | Yes (optional)     | VM-only           |
+| `vathos_eicar/`           | EICAR retrieval variant            | Yes (optional)     | VM-only           |
+| `vathos_rev/`             | Reverse-shell variant              | Yes                | High-risk VM-only |
 
-| Directory     | Contents                          | Safe to Open |
-|---------------|-----------------------------------|--------------|
-| `cape_logs/`  | CAPE sandbox logs and reports     | Yes          |
-| `cuckoo_logs/`| Cuckoo sandbox logs and reports   | Yes          |
-| `har_files/`  | HAR browser-capture files         | Yes          |
-| `*.c`         | Source code                       | Yes          |
-| `*.py`        | Build/helper scripts              | Yes          |
-| `details.txt` | Documentation                     | Yes          |
 
 Examples:
 
@@ -84,7 +85,7 @@ cat cuckoo_logs/report.json | jq .
 file har_files/*.har
 ```
 
-### Step 2 — Optional Build Verification (SAFE)
+### Optional Build Verification (SAFE)
 
 Reviewers may verify compilation without executing binaries.
 
@@ -96,7 +97,7 @@ x86_64-w64-mingw32-clang --target=x86_64-w64-windows-gnu -O2 onion.c -o test.exe
 
 This step validates reproducibility of the binaries without launching them.
 
-### Step 3 — Optional Dynamic Reproduction (UNSAFE / VM ONLY)
+### Optional Dynamic Reproduction (UNSAFE / VM ONLY)
 
 Execution of:
 
@@ -136,6 +137,115 @@ This command:
 - verifies binaries exist,
 - verifies source files exist,
 - and avoids executing any payloads.
+
+---
+## Artifact–Paper Mapping
+
+The table below maps the paper's main claims and per-product results (Section 5) to the
+corresponding artifact subdirectory and recommended reproduction workflow.
+
+### Tested Environments
+
+| Environment                     | Type                 | Version / Commit                     | Artifact Coverage                                  |
+| ------------------------------- | -------------------- | ------------------------------------ | -------------------------------------------------- |
+| Bitdefender GravityZone EDR     | EDR                  | Proprietary                          | External execution only                            |
+| Bitdefender GravityZone Sandbox | Malware sandbox      | Proprietary                          | External execution only                            |
+| Malwation Threat Zone           | Malware sandbox      | Cloud                                | External execution only                            |
+| CAPEv2                          | Malware sandbox      | Commit `52e4b43`                     | `cape_logs/`, `vathos_demo/`, `recursive_spawn/`   |
+| sandbox.pikker.ee               | Malware sandbox      | Open source                          | External execution only                            |
+| cuckoo.cert.ee                  | Malware sandbox      | Open source                          | External execution only                            |
+| Cuckoo                         | Malware sandbox      | Cuckoo v2.0.7                        | `cuckoo_logs/`, `recursive_spawn/`, `vathos_demo/` |
+| Kaspersky EDR                   | EDR                  | Proprietary                          | External execution only                            |
+| Microsoft Defender              | EDR                  | Proprietary                          | External execution only                            |
+| ANY.RUN                         | Malware sandbox      | Cloud                                | `har_files/`                                       |
+| Recorded Future Triage          | Malware sandbox      | Cloud                                | `har_files/`                                       |
+| Velociraptor                    | DFIR platform        | 0.74.1 (Go 1.23.2, commit 7e3ae67d3) | `recursive_velociraptor/`                          |
+| VirusTotal                      | Multiscan aggregator | Cloud                                | `har_files/`                                       |
+| WatchGuard EDR                  | EDR                  | Proprietary                          | External execution only                            |
+| Wazuh                           | EDR / SIEM           | 4.12.0-rc1                           | `recursive_ps_wazuh/`                              |
+| Hybrid Analysis                 | Malware sandbox      | Cloud                                | `har_files/`                                       |
+| OPSWAT MetaDefender             | Malware sandbox      | Cloud                                | `har_files/`                                       |
+| Comodo Valkyrie                 | Malware sandbox      | Cloud                                | `har_files/`                                       |
+
+
+---
+
+## VM / Network Safety Requirements & Dynamic Run Guidelines
+### Minimum VM Specifications
+
+Due to the recursive nature of the process-spawning demonstrations, under-resourced VMs
+**will crash or become unresponsive** before meaningful results are observable.
+
+| Resource | Minimum | Recommended |
+|---|---|---|
+| RAM | 4 GB | 8 GB+ |
+| CPU cores | 2 | 4 |
+| Disk space | 40 GB | 60 GB+ |
+
+**Always take a VM snapshot before any dynamic run.** This allows instant rollback without
+reprovisioning the entire environment.
+
+---
+
+**Start with `recursive_spawn.exe`** if you want to validate process-tree behavior without
+any reverse-shell component. It is the lowest-risk dynamic test in the artifact.
+---
+
+### Stopping & Cleaning Up a Run
+
+Cleanup procedure depends on which platform or tool is under test.
+Each platform has its own mechanisms, follow the platform's own documented workflow.
+General guidance per category is below.
+
+#### Sandbox Platforms (CAPE, Cuckoo)
+
+These platforms manage task lifecycle automatically. A submitted sample runs within its
+configured analysis timeout and terminates on its own. CAPE and Cuckoo will notify you
+when analysis is complete. After the run:
+
+1. Retrieve logs and reports from the sandbox web UI.
+2. Revert the analysis VM to its clean snapshot via the sandbox's built-in mechanism.
+3. Do **not** manually kill sandbox VMs mid-analysis unless the host is at risk — incomplete
+   runs produce incomplete logs.
+
+Refer to the CAPE and Cuckoo documentation for snapshot management and task cleanup.
+
+#### Velociraptor
+
+After running `recursive_velociraptor.exe`:
+
+1. Kill the process tree from the Velociraptor server UI by terminating the spawned artifact collection.
+2. On the VM, open Task Manager and end any remaining `recursive_velociraptor.exe` processes.
+3. Revert the VM to the pre-run snapshot.
+4. On the Velociraptor server, cancel or clear the affected hunt/collection.
+
+#### Wazuh
+
+After running `recursive_ps_demo.exe`:
+
+1. If the system is still responsive, kill the process from Task Manager or via:
+```powershell
+   Stop-Process -Name "recursive_ps_demo" -Force
+```
+2. Close any active listener on the host.
+3. Revert the VM to the pre-run snapshot.
+4. On the Wazuh manager, clear or archive the flooded alerts to restore normal agent
+   communication. Refer to the Wazuh documentation for alert and agent management.
+
+#### Online / Cloud Platforms (AnyRun, Triage, VirusTotal, etc.)
+
+These platforms run samples in their own isolated infrastructure. No local cleanup is required.
+After submission, wait for the analysis report to complete on the platform's side.
+
+#### General Fallback
+
+If a VM becomes unresponsive during any dynamic run:
+
+1. **Do not attempt to recover the running VM.** Force-power it off from the hypervisor.
+2. Revert to the pre-run snapshot immediately.
+3. Do not copy any files out of an in-progress or crashed VM.
+4. Re-run with reduced depth or timeout parameters if the crash occurred before results
+   were observable.
 
 ---
 
