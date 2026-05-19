@@ -715,3 +715,11 @@ This artifact is released strictly for academic research, defensive evaluation, 
 reproducibility purposes. A `LICENSE` file is included at the repository root.
 
 ---
+
+## Archived Release / DOI
+
+A stable archived release of this artifact is available via Zenodo DOI archival accompanying
+the paper submission.
+
+[![DOI](https://zenodo.org/badge/1170855522.svg)](https://doi.org/10.5281/zenodo.20288622)
+
