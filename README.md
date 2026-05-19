@@ -506,5 +506,4 @@ vathos_eicar.exe
 
 ---
 
-For artifact questions related to reproduction or evaluation, please contact the paper authors through the submission system or repository issue tracker.
 
